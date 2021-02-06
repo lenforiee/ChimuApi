@@ -113,7 +113,7 @@ class ChimuAPI:
         Params:
             - search_params: dict = Dict of params for search.
         Returns:
-            Placeholder
+            Returns json callback data from request.
         """
 
         # We create request first.
@@ -238,7 +238,7 @@ class AsyncChimuAPI:
         Params:
             - search_params: dict = Dict of params for search.
         Returns:
-            Placeholder
+            Returns json callback data from request.
         """
 
         # Create async session & make request.
