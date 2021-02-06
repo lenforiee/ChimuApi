@@ -6,6 +6,9 @@ from classes import Beatmap, BeatmapSet
 class ChimuAPI:
     """Synchronous ChimuAPI class for making requests"""
 
+    def __init__(self):
+        pass
+
     def get_map(self, map_id: int) -> Beatmap:
         """Gets a beatmap from chimu's API
         Params:
@@ -107,6 +110,9 @@ class ChimuAPI:
 
 class AsyncChimuAPI:
     """Asynchronous ChimuAPI class for making requests"""
+
+    def __init__(self):
+        pass
 
     async def get_map(self, map_id: int):
         """Gets a beatmap from chimu's API
