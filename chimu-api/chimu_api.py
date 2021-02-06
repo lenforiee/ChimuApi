@@ -108,6 +108,22 @@ class ChimuAPI:
         # Return it.
         return beatmap_set
 
+    def search(self, search_params: dict = {}):
+        """Search for a Beatmap.
+        Params:
+            - search_params: dict = Dict of params for search.
+        Returns:
+            Placeholder
+        """
+
+        # We create request first.
+        request = requests.get(f"https://api.chimu.moe/v1/search", params= search_params).json()
+
+        if request['code']:
+            raise Exception(f"The error was debugged: {request['message']}")
+
+        return request['data']
+
 class AsyncChimuAPI:
     """Asynchronous ChimuAPI class for making requests"""
 
@@ -216,3 +232,21 @@ class AsyncChimuAPI:
 
         # Return it.
         return beatmap_set
+
+    async def search(self, search_params: dict = {}):
+        """Search for a Beatmap.
+        Params:
+            - search_params: dict = Dict of params for search.
+        Returns:
+            Placeholder
+        """
+
+        # Create async session & make request.
+        async with aiohttp.ClientSession(json_serialize= orjson.dumps) as session:
+            async with session.get(f"https://api.chimu.moe/v1/search", params= search_params) as resp:
+                request = await resp.json()
+
+        if request['code']:
+            raise Exception(f"The error was debugged: {request['message']}")
+
+        return request['data']

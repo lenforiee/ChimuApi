@@ -1,12 +1,12 @@
-from chimu_api import AsyncChimuAPI
+from chimu_api import ChimuAPI
 import asyncio
 
-async def main():
+def main():
 
-    api = AsyncChimuAPI()
+    api = ChimuAPI()
 
-    sety = await api.get_set(1)
+    sety = api.search({ "query": "peppy" })
 
     print(sety)
 
-asyncio.run(main())
+main()
