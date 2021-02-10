@@ -1,7 +1,7 @@
 # ChimuAPI Python Wrapper
 API Wrapper around Chimu.moe API for both synchronous and asynchronous purposes.
 
-## Why is it made?
+## What is it for?
 I made this wrapper for Python devs so they can easly access Chimu.moe API both async and sync
 Allowing more people to use it!
 
