@@ -19,7 +19,7 @@ def main():
 
     for mapa in sets.ChildrenBeatmaps:
 
-        print(f"{mapa.title} [{mapa.DiffName}]")
+        print(f"{mapa.Title} [{mapa.DiffName}]")
     
     print(sets.Creator)
 
@@ -40,7 +40,7 @@ async def main():
 
     for mapa in sets.ChildrenBeatmaps:
 
-        print(f"{mapa.title} [{mapa.DiffName}]")
+        print(f"{mapa.Title} [{mapa.DiffName}]")
     
     print(sets.Creator)
 
