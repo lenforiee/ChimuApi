@@ -120,7 +120,7 @@ class ChimuAPI:
         """
 
         # We create request first.
-        request = requests.get(f"https://api.chimu.moe/v1/search", params= search_params).json()
+        request = requests.get("https://api.chimu.moe/v1/search", params= search_params).json()
 
         if request['code']:
             raise Exception(f"The error was debugged: {request['message']}")
@@ -292,7 +292,7 @@ class AsyncChimuAPI:
 
         # Create async session & make request.
         async with aiohttp.ClientSession(json_serialize= orjson.dumps) as session:
-            async with session.get("https://api.chimu.moe/v1/download/{set_id}", params= {
+            async with session.get(f"https://api.chimu.moe/v1/download/{set_id}", params= {
                 "k": key,
                 "s": state
             }) as resp:
