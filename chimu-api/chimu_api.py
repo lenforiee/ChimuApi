@@ -9,7 +9,8 @@ class ChimuAPI:
     def __init__(self):
         pass
 
-    def get_map(self, map_id: int) -> Beatmap:
+    @staticmethod
+    def get_map(map_id: int) -> Beatmap:
         """Gets a beatmap from chimu's API
         Params:
             - map_id: int = map id to be fetched.
@@ -48,7 +49,8 @@ class ChimuAPI:
         # Return it.
         return beatmap
 
-    def get_set(self, set_id: int) -> BeatmapSet:
+    @staticmethod
+    def get_set(set_id: int) -> BeatmapSet:
         """Gets a beatmap set from chimu's API
         Params:
             - set_id: int = set id to be fetched.
@@ -108,7 +110,8 @@ class ChimuAPI:
         # Return it.
         return beatmap_set
 
-    def search(self, search_params: dict = {}):
+    @staticmethod
+    def search(search_params: dict = {}):
         """Search for a Beatmap.
         Params:
             - search_params: dict = Dict of params for search.
@@ -124,7 +127,8 @@ class ChimuAPI:
 
         return request['data']
 
-    def download_file(self, set_id: int, key: str = "", state: str = "hcaptcha"):
+    @staticmethod
+    def download_file(set_id: int, key: str, state: str = "hcaptcha"):
         """Download a Beatmap.
         Params:
             - set_id: int = Set to be downloaded.
@@ -151,7 +155,8 @@ class AsyncChimuAPI:
     def __init__(self):
         pass
 
-    async def get_map(self, map_id: int):
+    @staticmethod
+    async def get_map(map_id: int):
         """Gets a beatmap from chimu's API
         Params:
             - map_id: int = map ID to be fetched.
@@ -192,7 +197,8 @@ class AsyncChimuAPI:
         # return it
         return beatmap
 
-    async def get_set(self, set_id: int) -> BeatmapSet:
+    @staticmethod
+    async def get_set(set_id: int) -> BeatmapSet:
         """Gets a beatmap set from chimu's API
         Params:
             - set_id: int = set id to be fetched.
@@ -254,7 +260,8 @@ class AsyncChimuAPI:
         # Return it.
         return beatmap_set
 
-    async def search(self, search_params: dict = {}):
+    @staticmethod
+    async def search(search_params: dict = {}):
         """Search for a Beatmap.
         Params:
             - search_params: dict = Dict of params for search.
@@ -264,7 +271,7 @@ class AsyncChimuAPI:
 
         # Create async session & make request.
         async with aiohttp.ClientSession(json_serialize= orjson.dumps) as session:
-            async with session.get(f"https://api.chimu.moe/v1/search", params= search_params) as resp:
+            async with session.get("https://api.chimu.moe/v1/search", params= search_params) as resp:
                 request = await resp.json()
 
         if request['code']:
@@ -272,7 +279,8 @@ class AsyncChimuAPI:
 
         return request['data']
 
-    async def download_file(self, set_id: int, key: str, state: str = "hcaptcha"):
+    @staticmethod
+    async def download_file(set_id: int, key: str, state: str = "hcaptcha"):
         """Download a Beatmap.
         Params:
             - set_id: int = Set to be downloaded.
@@ -284,7 +292,7 @@ class AsyncChimuAPI:
 
         # Create async session & make request.
         async with aiohttp.ClientSession(json_serialize= orjson.dumps) as session:
-            async with session.get(f"https://api.chimu.moe/v1/download/{set_id}", params= {
+            async with session.get("https://api.chimu.moe/v1/download/{set_id}", params= {
                 "k": key,
                 "s": state
             }) as resp:
