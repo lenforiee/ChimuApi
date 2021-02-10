@@ -124,6 +124,27 @@ class ChimuAPI:
 
         return request['data']
 
+    def download_file(self, set_id: int, key: str = "", state: str = "hcaptcha"):
+        """Download a Beatmap.
+        Params:
+            - set_id: int = Set to be downloaded.
+            - key: str = API key to download without captcha.
+            - state: str = State of verification either of hcaptcha or success.
+        Returns:
+            Returns file bytes for user to save it.
+        """
+
+        # We create request first.
+        request = requests.get(f"https://api.chimu.moe/v1/download/{set_id}", params= {
+            "k": key,
+            "s": state
+        })
+
+        if request.status_code != 200:
+            raise Exception(f"Map file of ID {set_id} couldnt be fetched!")
+
+        return request.content
+
 class AsyncChimuAPI:
     """Asynchronous ChimuAPI class for making requests"""
 
@@ -250,3 +271,27 @@ class AsyncChimuAPI:
             raise Exception(f"The error was debugged: {request['message']}")
 
         return request['data']
+
+    async def download_file(self, set_id: int, key: str, state: str = "hcaptcha"):
+        """Download a Beatmap.
+        Params:
+            - set_id: int = Set to be downloaded.
+            - key: str = API key to download without captcha.
+            - state: str = State of verification either of hcaptcha or success.
+        Returns:
+            Returns file bytes for user to save it.
+        """
+
+        # Create async session & make request.
+        async with aiohttp.ClientSession(json_serialize= orjson.dumps) as session:
+            async with session.get(f"https://api.chimu.moe/v1/download/{set_id}", params= {
+                "k": key,
+                "s": state
+            }) as resp:
+
+                if resp.status != 200:
+                    raise Exception(f"Map file of ID {set_id} couldnt be fetched!")
+
+                request = await resp.read()
+
+        return request
