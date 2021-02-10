@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="ChimuApi",
-    version="0.1.0",
+    version="0.1.5",
     author="Lenforiee",
     author_email="lenforiee@misumi.me",
     description="API Wrapper around Chimu.moe API for both synchronous and asynchronous purposes.",
