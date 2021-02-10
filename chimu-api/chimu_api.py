@@ -1,7 +1,7 @@
 import aiohttp
 import requests
 import orjson
-from classes import Beatmap, BeatmapSet
+from .classes import Beatmap, BeatmapSet
 
 class ChimuAPI:
     """Synchronous ChimuAPI class for making requests"""
